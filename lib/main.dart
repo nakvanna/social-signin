@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:social_login/bindings/shared-prefs-binding.dart';
+import 'package:social_login/controllers/shared-prefs.dart';
+import 'package:social_login/controllers/translation_controller.dart';
+import 'package:social_login/helper/info-const.dart';
+import 'package:social_login/routes/app_pages.dart';
+import 'package:social_login/translations/text_translation.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  final translationController = TranslationController();
+
+  _changeLocale({String? langCode}) {
+    if (langCode == 'en') {
+      translationController.changeLanguage('en', 'US');
+    } else {
+      translationController.changeLanguage('kh', 'KH');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      onInit: () async {
+        await Get.find<SharedPrefs>().getLangCode();
+        await Future.delayed(Duration(seconds: 1), () {
+          _changeLocale(langCode: InfoConst.langCode.value);
+          Get.offAllNamed(Routes.AUTH);
+        });
+      },
+      initialBinding: SharedPrefsBinding(),
+      theme: ThemeData(),
+      locale: Locale('en', 'US'),
+      translations: LabelTranslation(),
+      getPages: AppPages.routes,
+      initialRoute: Routes.SPLASH,
+      title: 'Social Login',
+    );
+  }
+}
