@@ -6,12 +6,15 @@ import 'package:social_login/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_login/widgets/auth_button.dart';
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends GetWidget {
   SignInForm(this.formKey);
   final formValidator = FormValidator();
   final formKey;
-  final email = TextEditingController();
-  final password = TextEditingController();
+
+  // final email = Rx<TextEditingController?>(null);
+  // final password = Rx<TextEditingController?>(null);
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +60,23 @@ class SignInForm extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              Text(
-                'email'.tr,
-                style: CustomFontStyle.labelTextStyle(),
+              Row(
+                children: [
+                  Icon(Icons.email),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    'email'.tr,
+                    style: CustomFontStyle.labelTextStyle(),
+                  ),
+                ],
               ),
               TextFormField(
                 validator: ((email) =>
                     formValidator.emailValidate(email: email!.isEmail)),
                 controller: email,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'email'.tr,
                   hintStyle: CustomFontStyle.hintTextStyle(),
@@ -73,9 +85,17 @@ class SignInForm extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              Text(
-                'password'.tr,
-                style: CustomFontStyle.labelTextStyle(),
+              Row(
+                children: [
+                  Icon(Icons.lock),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    'password'.tr,
+                    style: CustomFontStyle.labelTextStyle(),
+                  ),
+                ],
               ),
               TextFormField(
                 validator: ((password) =>
@@ -140,7 +160,10 @@ class SignInForm extends StatelessWidget {
                     label: 'sign-in',
                     loading: false,
                     onPressed: () {
-                      if (formKey.currentState.validate()) {}
+                      if (formKey.currentState.validate()) {
+                        print(email.text);
+                        print(password.text);
+                      }
                     },
                   )
                 ],

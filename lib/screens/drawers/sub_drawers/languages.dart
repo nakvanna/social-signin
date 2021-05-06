@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:social_login/controllers/shared-prefs.dart';
+import 'package:social_login/controllers/shared-prefs-controller.dart';
 import 'package:social_login/controllers/translation_controller.dart';
 import 'package:social_login/helper/info-const.dart';
 import 'package:social_login/routes/app_pages.dart';
@@ -43,7 +43,7 @@ class LanguageSettings extends GetView<TranslationController> {
                 () => CheckboxListTile(
                   value: InfoConst.langCode.value == items[index]['langCode'],
                   onChanged: (value) async {
-                    await Get.find<SharedPrefs>().setLanguage(
+                    await Get.find<SharedPrefsController>().setLanguage(
                       langCode: items[index]['langCode'],
                     );
                     controller.changeLanguage(

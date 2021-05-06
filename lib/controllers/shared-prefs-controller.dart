@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:social_login/helper/info-const.dart';
 
-class SharedPrefs extends GetxController {
+class SharedPrefsController extends GetxController {
   static String langCodeKey = 'LANGUAGE_CODE';
 
   Future<void> setLanguage({required String langCode}) async {

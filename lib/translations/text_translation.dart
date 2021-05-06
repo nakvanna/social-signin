@@ -17,6 +17,7 @@ class LabelTranslation extends Translations {
           'forget-password?': 'Forget password?',
           'remember-me!': 'Remember me!',
           'new-user?': 'New user?',
+          'home-screen': 'Home Screen',
         },
         'kh_KH': {
           'social-login': 'តាមរយៈបណ្ដាយសង្គម',
@@ -31,6 +32,7 @@ class LabelTranslation extends Translations {
           'forget-password?': 'ភ្លេចពាក្យសម្ងាត់?',
           'remember-me!': 'ចង់ចាំខ្ញំុផង!',
           'new-user?': 'អ្នកប្រើប្រាស់ថ្មី?',
+          'home-screen': 'ទំព័រដើម',
         }
       };
 }

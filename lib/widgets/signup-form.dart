@@ -6,7 +6,7 @@ import 'package:social_login/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_login/widgets/auth_button.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends GetWidget {
   SignUpForm(this.formKey);
   final formValidator = FormValidator();
   final formKey;
@@ -59,9 +59,17 @@ class SignUpForm extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              Text(
-                'username'.tr,
-                style: CustomFontStyle.labelTextStyle(),
+              Row(
+                children: [
+                  Icon(Icons.person),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    'username'.tr,
+                    style: CustomFontStyle.labelTextStyle(),
+                  ),
+                ],
               ),
               TextFormField(
                 validator: ((username) =>
@@ -75,14 +83,23 @@ class SignUpForm extends StatelessWidget {
               SizedBox(
                 height: 8.h,
               ),
-              Text(
-                'email'.tr,
-                style: CustomFontStyle.labelTextStyle(),
+              Row(
+                children: [
+                  Icon(Icons.email),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    'email'.tr,
+                    style: CustomFontStyle.labelTextStyle(),
+                  ),
+                ],
               ),
               TextFormField(
                 validator: ((email) =>
                     formValidator.emailValidate(email: email!.isEmail)),
                 controller: email,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'email'.tr,
                   hintStyle: CustomFontStyle.hintTextStyle(),
@@ -91,9 +108,17 @@ class SignUpForm extends StatelessWidget {
               SizedBox(
                 height: 8.h,
               ),
-              Text(
-                'password'.tr,
-                style: CustomFontStyle.labelTextStyle(),
+              Row(
+                children: [
+                  Icon(Icons.lock),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    'password'.tr,
+                    style: CustomFontStyle.labelTextStyle(),
+                  ),
+                ],
               ),
               TextFormField(
                 validator: ((password) =>
@@ -108,9 +133,17 @@ class SignUpForm extends StatelessWidget {
               SizedBox(
                 height: 8.h,
               ),
-              Text(
-                'verify'.tr,
-                style: CustomFontStyle.labelTextStyle(),
+              Row(
+                children: [
+                  Icon(Icons.lock),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Text(
+                    'verify'.tr,
+                    style: CustomFontStyle.labelTextStyle(),
+                  ),
+                ],
               ),
               TextFormField(
                 validator: ((verify) => formValidator.verifyValidate(
@@ -163,7 +196,12 @@ class SignUpForm extends StatelessWidget {
                     label: 'sign-up',
                     loading: false,
                     onPressed: () {
-                      if (formKey.currentState.validate()) {}
+                      if (formKey.currentState.validate()) {
+                        print(username.text);
+                        print(email.text);
+                        print(password.text);
+                        print(verify.text);
+                      }
                     },
                   )
                 ],
